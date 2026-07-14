@@ -67,6 +67,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---- Residential / Commercial tabs ---- */
+  var rcTabs = document.querySelectorAll('.rc-tab');
+  var rcPanels = document.querySelectorAll('.rc-panel');
+  rcTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      rcTabs.forEach(function (t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+      rcPanels.forEach(function (p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      var panel = document.getElementById(tab.dataset.tab);
+      if (panel) panel.classList.add('active');
+    });
+  });
+
   /* ---- Footer year ---- */
   var yr = document.getElementById('year');
   if (yr) { yr.textContent = new Date().getFullYear(); }
