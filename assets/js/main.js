@@ -81,6 +81,20 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* ---- Pre-select service from ?service= query param (service card -> booking form) ---- */
+  var serviceSelect = document.getElementById('service');
+  if (serviceSelect) {
+    var params = new URLSearchParams(window.location.search);
+    var service = params.get('service');
+    if (service) {
+      serviceSelect.value = service;
+      var bookSection = document.getElementById('book');
+      if (bookSection) {
+        window.setTimeout(function () { bookSection.scrollIntoView(); }, 0);
+      }
+    }
+  }
+
   /* ---- Footer year ---- */
   var yr = document.getElementById('year');
   if (yr) { yr.textContent = new Date().getFullYear(); }
